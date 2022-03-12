@@ -1,0 +1,26 @@
+
+\section{Synths}
+(A complete list of synths supported by dats can be listed by running \texttt{dats -{}-list-synths})
+
+\np In this document, a synth takes a staff, (optionally, with arguments), and returns a pcm16.
+
+\np Usually, a composer would like to spice things up, add some punch or tweak some
+parameters of the synth, in this case, values or strings, may be passed to the options provided
+by the synth. These are always enclosed in a bracket:
+
+\begin{Verbatim}[frame=single]
+      synth.synth_name(staff)[synth_option1=123];
+\end{Verbatim}
+
+Sucession of options can be done by appending a comma followed by an another option:
+
+\begin{Verbatim}[frame=single]
+      synth.synth_name(staff)[
+          synth_option1=123,
+          synth_option2=123,
+          synth_option3="test"];
+\end{Verbatim}
+
+\np A list of options provided by a synth can be found by running,
+\texttt{dats -{}-list-options synth\char`_name}. (not yet implemented)
+

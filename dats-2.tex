@@ -1,0 +1,126 @@
+\documentclass[10pt, twoside]{article}
+\usepackage[top=1in, left=1.5in, right=1.5in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage{fancyvrb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\IfFileExists{pdfx.sty}
+  {
+    \usepackage[a-1b]{pdfx}
+  }{}
+
+\newcommand{\secname}{}
+\let\stdsection\section
+\newcommand{\newsection}[1]{\clearpage\setcounter{numpar}{0}\stdsection{#1}\renewcommand{\secname}{#1}}
+\newcommand\textgray[1]{\fcolorbox{gray!80}{gray!10}{\texttt{\bfseries#1}}}
+\renewcommand{\section}{\clearpage\setcounter{numpar}{0}\stdsection}
+
+\let\stdsubsection\subsection
+\renewcommand\subsection{\setcounter{numpar}{0}\stdsubsection}
+\let\stdsubsubsection\subsubsection
+\renewcommand\subsubsection{\setcounter{numpar}{0}\stdsubsubsection}
+\let\stdparagraph\paragraph
+\renewcommand\paragraph{\setcounter{numpar}{0}\stdparagraph}
+\newcommand\frelo{\relax}
+
+\fancyhf{}
+\fancyhead[LE,RO]{Dats language}
+\fancyhead[RE,LO]{v2.0.0}
+\fancyhead[CE,CO]{\bfseries DRAFT}
+\fancyfoot[CE,CO]{\nouppercase{\secname}}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[RE,LO]{\frelo}
+\pagenumbering{roman}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\title{\textbf{The Dats\thanks{\url{github.com/harieamjari/dats/}} language v2.0.0}}
+\newcounter{numpar}
+\newcommand{\np}[1][]{%
+  \par
+  \refstepcounter{numpar}%
+  \noindent
+  \makebox[0pt][r]{%
+    \makebox[0pt][l]{{\footnotesize\thenumpar}}%
+    \qquad
+  }%
+  #1%
+  \ignorespaces
+}
+\hypersetup{pdftitle={The Dats Language},
+            pdfauthor={Al-buharie Amjari},
+            bookmarks=true,
+            bookmarksnumbered=true,
+            pdfpagelabels=true,
+            pdfpagemode=UseOutlines,
+            pdfstartview=FitH,
+            linktocpage=true,
+            colorlinks=true,
+            linkcolor=blue,
+            %plainpages=false
+}
+
+\pagestyle{fancy}
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\begin{Verbatim}[frame=single, label=The "Hello World" of Dats]
+      staff foo {
+        n 4, c4;
+        n 4, d4;
+        n 4, e4;
+      }
+
+      main {
+        pcm16 bar = synth.psg(foo);
+        write("t.wav", bar);
+      }
+\end{Verbatim}
+\vspace{1in}
+\begin{abstract}
+This is part of the Dats v2.0.0 documentation\footnote{\url{github.com/harieamjari/dats/blob/main/doc/dats-2.tex}}
+and is a draft. This document may be outdated in the future so readers are adviced instead to
+follow 1, although this draft should be able to provide the syntax and able the user to
+extrapolate from these to start writing a music composition in Dats language.
+
+Recipients of this document are invited to give comments, suggestions and recommendations
+for improvement of this current revision in a manner of constructive criticism.
+Critics in this way are valuable and could help in formulating next appropriate
+document.
+
+Further revision of this draft may be publish by the author from time to time.
+\end{abstract}
+
+\tableofcontents
+
+\renewcommand\section{\newsection}
+
+\input{intro.tex}
+\input{tds.tex}
+
+\section{Conventions}
+\input{thebasics.tex}
+\input{env.tex}
+\input{langnota.tex}
+\input{synths.tex}
+
+\section{Filters}
+
+In this document, a filter takes a pcm16, (optionally, with arguments), and returns a pcm16.
+
+\section{EBNF}
+%\section*{Afterword}
+
+Currently, even myself is having hard time transcribing music into Dats. It can be time consuming to debug the ASCII music sheet whenever a note was place 
+incorrectly and a pain in the butt.
+
+
+
+\end{document}

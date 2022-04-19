@@ -34,7 +34,7 @@ is just the denominator of how much measure the musical note took.
 where you do your operations on staffs and synthesize, producing sounds.
 
 \np First, we process the staff using a synthesizer. The output of this synthesizer
-is then stored into a variable, usually a type of `pcm16`:
+is then stored into a variable, usually a type of `track`:
 
 \begin{Verbatim}[frame=single]
       staff foo {
@@ -42,18 +42,18 @@ is then stored into a variable, usually a type of `pcm16`:
       }
 
       main {
-        pcm16 bar = synth.kpa(foo);
+        track bar = synth.kpa(foo);
         write("w.wav", bar);
       }
 \end{Verbatim}
 
 \np This is then written into a file named, "w.wav". (Currently, Dats only supports writing wav files.)
 
-\np To append one or more pcm16 to another pcm16, you may simply just add a comma, followed by the pcm16
+\np To append one or more track to another track, you may simply just add a comma, followed by the track
 you were appending with:
 
 \begin{Verbatim}[frame=single]
-      pcm16 tr1 = synth.kpa(/* some staff */);
-      pcm16 tr2 = synth.kpa(/* some staff */);
-      pcm16 tr3 = tr1, tr2, tr2;
+      track tr1 = synth.kpa(/* some staff */);
+      track tr2 = synth.kpa(/* some staff */);
+      track tr3 = tr1, tr2, tr2;
 \end{Verbatim}

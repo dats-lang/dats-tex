@@ -19,7 +19,7 @@ the 10 {decimal digits}:
 
 and the miscs symbols:
 \begin{verbatim}
-       - + * / ( ) { } [ ] / " ; = .
+       - + * / ( ) { } [ ] " ; = . , #
 \end{verbatim}
 
 \subsubsection{Keywords}
@@ -27,7 +27,7 @@ and the miscs symbols:
 \np Keywords: one of
 
 \begin{verbatim}
-       attack        bpm          pcm16
+       attack        bpm          track
        decay         filter       n
        main          mix          r
        octave        read
@@ -82,6 +82,7 @@ a total of 210 reserved words.
 
 \subsubsection{Identifier}
 
+\subsubsection{Intrinsic functions}
 
 \subsubsection{Note}
 
@@ -106,7 +107,7 @@ a total of 210 reserved words.
 \np Just like in the C programming language, you can use a double slash (solidus if you like), \verb+//+.
 It eats the letters/words in its front until it reaches a newline.
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 1, c4; //EAT MEEE!!!
       }
 \end{Verbatim}
@@ -142,7 +143,7 @@ The above has a key 'c' at octave 4.
 
 \np To play a whole note ringing at c4:
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 1, c4;
       }
 \end{Verbatim}
@@ -150,14 +151,14 @@ The above has a key 'c' at octave 4.
 a half of a note ringing at d4:
 
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 2, d4;
       }
 \end{Verbatim}
 
 and a quarter of a note ringing at e4:
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 4, e4;
       }
 \end{Verbatim}
@@ -169,7 +170,7 @@ and a quarter of a note ringing at e4:
 The parameter \textgray{<note>} may be entered for a number of times:
 
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 1, c4 e4 g4;
       }
 \end{Verbatim}
@@ -177,13 +178,18 @@ The parameter \textgray{<note>} may be entered for a number of times:
 \np The example above plays the C major chord at root position as whole note. (Integer overflow is not
 protected; you might hear undesirable sounds.)
 
-\np Single and double dotted notes are implemented but three dots were not. To use dots, you may need to use a period. An example below is a 1/4 dotted note:
+\np Dotted notes are implemented which reduces the duration of the playing of
+that note. To use dots, you must to use a period. An example below is a 1/4 dotted note:
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 4., c4;
         n 4..,d4;
       }
 \end{Verbatim}
+
+\np In the above construct, the former is played as stacatto while the latter is played
+as stacattisimo. There is no limit on how many dots you entered, what's stopping you
+is the limit to what the human ears can recognized.
 
 \np The key from A-G is supported, and the octave it takes must be an integer
 from 0 to 9.
@@ -191,7 +197,7 @@ from 0 to 9.
 \np To use accidentals, append \verb+#+ to the first letter of the note to raise the note a semitone and to lower the
 note a semitone, append \verb+b+ to the first letter of the note:
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 1, c#4;
         n 2, db4;
       }
@@ -200,19 +206,11 @@ note a semitone, append \verb+b+ to the first letter of the note:
 \np Unlike the parameter \textgray{length>}, arithmetic operation is illegal
 to perform on a \textgray{<note>}. so \textgray{<note>+<note>} is prohibited.
 
-\begin{itemize}
-\item To perform a staccato, append a \verb+.+ to every ending of a note.
-
-\begin{Verbatim}[frame=single]
-      n 4, c4.;
-\end{Verbatim}
-
-\item To play a chord or a dyad, like `c4 e4 g4`, one just needs to write as it is:
+\np To play a chord or a dyad, like \textgray{c4 e4 g4}, one just needs to write as it is:
 
 \begin{Verbatim}[frame=single]
       n 4, c4 e4 g4;
 \end{Verbatim}
-\end{itemize}
 
 \textbf{NOTE} If all these notes is played as staccato, append,
 \textgray{.}, to them, so, it becomes, \textgray{c4. e4. g4.}
@@ -255,7 +253,7 @@ of a note) and others.
 
 and use the denominator, \verb+12+, as the value of the length:
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         n 12, c4;
         n 12, d4;
         n 12, e4;
@@ -281,23 +279,23 @@ length of the rest:
 
 \subsubsection{Extensions}
 
-\subsection{\texttt{pcm16}}
-\np This is is a signed 16-bit PCM. A declaration of variable of type,
-\verb+pcm16+, must be immdediately followed by its identifier, followed by
-an assignment to one of synthesizers taking a variable of type, \verb+staff+. 
+\subsection{\texttt{track}}
+\np A declaration of variable of type,
+\verb+track+, must be immdediately followed by its identifier, followed by
+an assignment to one of synthesizers taking a type, \verb+staff+. 
 \begin{Verbatim}[frame=single]
-       pcm16 foo = synth.psg(pol);
+       track foo = synth.psg(pol);
 \end{Verbatim}
 
-or other variable of type ,\verb+pcm16+.
+or other variable of type ,\verb+track+.
 \begin{Verbatim}[frame=single]
-      pcm16 foo = synth.psg(pol);
-      pcm16 bar = foo;
+      track foo = synth.psg(pol);
+      track bar = foo;
 \end{Verbatim}
 
 \np To append these supported types, a comma must be added, followed by an rvalue:
 \begin{Verbatim}[frame=single]
-      pcm16 foo = synth.psg(bar), synth.psg(bar);
+      track foo = synth.psg(bar), synth.psg(bar);
 \end{Verbatim}
 
 
@@ -311,7 +309,7 @@ of the note. Refer to the \verb+n+ keyword.
 \np To preserve the readability of the text, it is a recommended practice to add a comment for every
 beginning measure, regardless of the time signature. Below is a 4/4 time signature:
 \begin{Verbatim}[frame=single]
-      staff {
+      staff foo {
         // Measure 1
         n 1, c4;
   

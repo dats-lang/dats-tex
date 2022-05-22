@@ -1,59 +1,19 @@
-\section{The basics}
+\section{Conventions}
 
-\np Toward playing music, there must be series of musical notes written for the player to read.
-For dats, a musical note is declared with the keyword \verb+n+. \verb+n+ must contain two arguments,
-a length and a note, each are separated by a comma:
+\np To differentiate the concepts and terminologies in the Dats language and
+actual music terms, we prefix "musical" to any terms and concepts which
+refers to the actual concepts in music. For example, \textit{musical staff} refers
+to the five line-staff in western musical notation, while \textit{staff} refers to
+the concept of staff keyword describe in this document. Similarly,
+\textit{musical note} and \textit{musical rest} refers to the symbol of a musical
+sound and symbol of silence in the field of music\footnote{\textit{Musical note} and
+\textit{musical rest} might also be use interchangeably with the statements in a \textit{staff block}.}
+while \textit{note} in this Dats language refers to the literal consisting
+of a key, an optional accidental, and an octave \protect\textgray{[a-g](b|\#)?[0-9]}..
+ 
+\np Figures of musical staffs presented throughout this document follows the
+western musical notation of five line-staff. In a G-clef, each respective
+spaces are note of f4 a4 c5 e5 and the lines are of g4 b4 d5 f5.
 
 
-\begin{Verbatim}[frame=single]
-       n <length>, <note>;
-\end{Verbatim}
 
-\begin{center}
-\color{blue}
-\includegraphics{s1.pdf}
-\end{center}
-
-\np an example of such declaration is:
-\begin{Verbatim}[frame=single]
-       n 4, c4;
-\end{Verbatim}
-
-This is a declaration of musical note of length 1/4, playing the note c4. The length
-is just the denominator of how much measure the musical note took.
-
-\np Such musical notes, (and musical rests), are always declared inside a \textit{staff block}:
-
-\begin{Verbatim}[frame=single]
-      staff foo {
-        n 4, c4;
-      }
-\end{Verbatim}
-
-\np Now we have a staff, what else do we need? A `main`. A main is basically
-where you do your operations on staffs and synthesize, producing sounds.
-
-\np First, we process the staff using a synthesizer. The output of this synthesizer
-is then stored into a variable, usually a type of `track`:
-
-\begin{Verbatim}[frame=single]
-      staff foo {
-        n 4, c4;
-      }
-
-      main {
-        track bar = synth.kpa(foo);
-        write("w.wav", bar);
-      }
-\end{Verbatim}
-
-\np This is then written into a file named, "w.wav". (Currently, Dats only supports writing wav files.)
-
-\np To append one or more track to another track, you may simply just add a comma, followed by the track
-you were appending with:
-
-\begin{Verbatim}[frame=single]
-      track tr1 = synth.kpa(/* some staff */);
-      track tr2 = synth.kpa(/* some staff */);
-      track tr3 = tr1, tr2, tr2;
-\end{Verbatim}

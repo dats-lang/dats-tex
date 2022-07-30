@@ -80,7 +80,38 @@ but it is mentioned here to be explicit.} ($\sharp$):
 
 a total of 210 reserved words.
 
+
+\subsubsection{Future reserved words}
+
+\np Future reserved words: composers must execise caution from using any
+of the following words:
+
+the 70 accidented \textit{double flat notes} ($\flat\flat$):
+
+\begin{verbatim}
+       abb0 abb1 abb2 abb3 abb4 abb5 abb6 abb7 abb8 abb9
+       bbb0 bbb1 bbb2 bbb3 bbb4 bbb5 bbb6 bbb7 bbb8 bbb9
+       cbb0 cbb1 cbb2 cbb3 cbb4 cbb5 cbb6 cbb7 cbb8 cbb9
+       dbb0 dbb1 dbb2 dbb3 dbb4 dbb5 dbb6 dbb7 dbb8 dbb9
+       ebb0 ebb1 ebb2 ebb3 ebb4 ebb5 ebb6 ebb7 ebb8 ebb9
+       fbb0 fbb1 fbb2 fbb3 fbb4 fbb5 fbb6 fbb7 fbb8 fbb9
+       gbb0 gbb1 gbb2 gbb3 gbb4 gbb5 gbb6 gbb7 gbb8 gbb9
+\end{verbatim}
+
+the 70 accidented \textit{double sharp notes} ($\sharp\sharp$):
+
+\begin{verbatim}
+       a##0 a##1 a##2 a##3 a##4 a##5 a##6 a##7 a##8 a##9
+       b##0 b##1 b##2 b##3 b##4 b##5 b##6 b##7 b##8 b##9
+       c##0 c##1 c##2 c##3 c##4 c##5 c##6 c##7 c##8 c##9
+       d##0 d##1 d##2 d##3 d##4 d##5 d##6 d##7 d##8 d##9
+       e##0 e##1 e##2 e##3 e##4 e##5 e##6 e##7 e##8 e##9
+       f##0 f##1 f##2 f##3 f##4 f##5 f##6 f##7 f##8 f##9
+       g##0 g##1 g##2 g##3 g##4 g##5 g##6 g##7 g##8 g##9
+\end{verbatim}
+
 \subsubsection{Identifier}
+
 
 \subsubsection{Intrinsic functions}
 
@@ -148,6 +179,10 @@ The above has a key 'c' at octave 4.
       }
 \end{Verbatim}
 
+\begin{center}
+\includegraphics{notes/1c}
+\end{center}
+
 a half of a note ringing at d4:
 
 \begin{Verbatim}[frame=single]
@@ -156,12 +191,20 @@ a half of a note ringing at d4:
       }
 \end{Verbatim}
 
+\begin{center}
+\includegraphics{notes/2d}
+\end{center}
+
 and a quarter of a note ringing at e4:
 \begin{Verbatim}[frame=single]
       staff foo {
         n 4, e4;
       }
 \end{Verbatim}
+
+\begin{center}
+\includegraphics{notes/4e}
+\end{center}
 
 \np One can derive the length of the note from the denominator of these notes:
 \verb+1/1 1/2 1/4+
@@ -171,9 +214,13 @@ The parameter \textgray{<note>} may be entered for a number of times:
 
 \begin{Verbatim}[frame=single]
       staff foo {
-        n 1, c4 e4 g4;
+        n 4, c4 e4 g4;
       }
 \end{Verbatim}
+
+\begin{center}
+\includegraphics{notes/dyad_ceg}
+\end{center}
 
 \np The example above plays the C major chord at root position as whole note. (Integer overflow is not
 protected; you might hear undesirable sounds.)
@@ -187,8 +234,11 @@ that note. To use dots, you must to use a period. An example below is a 1/4 dott
       }
 \end{Verbatim}
 
-\np In the above construct, the former is played as stacatto while the latter is played
-as stacattisimo. There is no limit on how many dots you entered, what's stopping you
+\begin{center}
+\includegraphics{notes/cpdpp}
+\end{center}
+
+\np There is no limit on how many dots you can enter; what's stopping you
 is the limit to what the human ears can recognized.
 
 \np The key from A-G is supported, and the octave it takes must be an integer
@@ -202,6 +252,10 @@ note a semitone, append \verb+b+ to the first letter of the note:
         n 2, db4;
       }
 \end{Verbatim}
+
+\begin{center}
+\includegraphics{notes/csdf}
+\end{center}
 
 \np Unlike the parameter \textgray{length>}, arithmetic operation is illegal
 to perform on a \textgray{<note>}. so \textgray{<note>+<note>} is prohibited.
@@ -259,8 +313,6 @@ and use the denominator, \verb+12+, as the value of the length:
         n 12, e4;
       }
 \end{Verbatim}
-
-produces:
 
 \begin{center}
 \includegraphics{notes/4triplet_cde}

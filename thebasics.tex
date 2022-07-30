@@ -29,17 +29,29 @@ is just the denominator of how much measure the musical note took.
       }
 \end{Verbatim}
 
-produces:
-
 \begin{center}
 \includegraphics{notes/c4}
 \end{center}
 
-\np Now we have a staff, what else do we need? A `main`. A main is basically
-where you do your operations on staffs and synthesize, producing sounds.
+\np Now, copy this to a file named t.dats and ran it with, `dats t.dats`... and you
+see no sound file.
+
+\begin{Verbatim}[frame=single]
+      $ dats t.dats
+      Symbol table of t.dats
+        IDENTIFIER              TYPE
+      
+        foo                     staff
+      $ ls
+      $
+\end{Verbatim}
+
+this is because dats only read the staff and that's it; it didn't perform the synthesis of the
+sound of each note. Such operation is performed inside the \textit{main block}. This main block
+is declared with the \textgray{main} keyword.
 
 \np First, we process the staff using a synthesizer. The output of this synthesizer
-is then stored into a variable, usually a type of `track`:
+is then stored into a variable, usually a type of \textgray{track}.
 
 \begin{Verbatim}[frame=single]
       staff foo {
@@ -54,7 +66,7 @@ is then stored into a variable, usually a type of `track`:
 
 \np This is then written into a file named, "w.wav". (Currently, Dats only supports writing wav files.)
 
-\np To append one or more track to another track, you may simply just add a comma, followed by the track
+\np To append (or concatenate) one or more track to another track, you may simply just add a comma, followed by the track
 you were appending with:
 
 \begin{Verbatim}[frame=single]
@@ -62,3 +74,20 @@ you were appending with:
       track tr2 = synth.kpa(/* some staff */);
       track tr3 = tr1, tr2, tr2;
 \end{Verbatim}
+
+\subsection{Track types}
+
+\np There exists two types of \textgray{track}; mono and stereo. A mono track signifies a track
+of one (1) channel and a stereo track signifies a track of two (2) channels.
+A track of this type is specified with the \textgray{mono} and \textgray{stereo}
+\textit{track type specifier}. By default, a track declared as stereo.
+
+\np 
+
+\subsubsection{Mono track}
+\subsubsection{Stereo track}
+
+
+
+
+

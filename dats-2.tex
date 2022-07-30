@@ -15,11 +15,11 @@
   {
     \usepackage[a-1b]{pdfx}
   }{}
-
 \newcommand{\secname}{}
 \let\stdsection\section
 \newcommand{\newsection}[1]{\clearpage\setcounter{numpar}{0}\stdsection{#1}\renewcommand{\secname}{#1}}
 \newcommand\textgray[1]{\fcolorbox{gray!80}{gray!10}{\texttt{\bfseries#1}}}
+\newcommand\texttb[1]{\texttt{\bfseries#1}}
 \renewcommand{\section}{\clearpage\setcounter{numpar}{0}\stdsection}
 
 \let\stdsubsection\subsection
@@ -40,7 +40,6 @@
 \pagenumbering{roman}
 \renewcommand{\headrulewidth}{0pt}
 
-
 \title{\textbf{The Dats\thanks{\url{github.com/dats-lang/dats-src/}} language v2.0.0}}
 \newcounter{numpar}
 \newcommand{\np}[1][]{%
@@ -55,7 +54,7 @@
   \ignorespaces
 }
 \hypersetup{pdftitle={The Dats Language},
-            pdfauthor={Al-buharie Amjari},
+            pdfauthor={Al-buharie Amjari and others.},
             bookmarks=true,
             bookmarksnumbered=true,
             pdfpagelabels=true,
@@ -100,6 +99,7 @@ and is a draft. This document may be outdated in the future so readers are advic
 follow 1, although this draft should be able to provide the syntax and able the user to
 extrapolate from these to start writing a music composition in Dats language.
 
+
 Recipients of this document are invited to give comments, suggestions and recommendations
 for improvement of this current revision in a manner of constructive criticism.
 Critics in this way are valuable and could help in formulating next appropriate
@@ -113,7 +113,7 @@ Further revision of this draft may be publish by the author from time to time.
 
 \begin{minipage}[t]{5in}
 \begin{Verbatim}[fontsize=\small]
-Copyright (c) 2022  The Dats-TeX authors.
+Copyright (c) 2021-2022 The Dats-TeX authors.
 
 Permission is granted to copy, distribute and/or modify this
 document under the terms of the GNU Free Documentation License,

@@ -1,4 +1,4 @@
-\section{Language and notation}
+\section{Language} 
 \subsection{Lexical elements}
 \subsubsection{Character sets}
 
@@ -98,7 +98,7 @@ the 70 accidented \textit{double flat notes} ($\flat\flat$):
        gbb0 gbb1 gbb2 gbb3 gbb4 gbb5 gbb6 gbb7 gbb8 gbb9
 \end{verbatim}
 
-the 70 accidented \textit{double sharp notes} ($\sharp\sharp$):
+and the 70 accidented \textit{double sharp notes} ($\sharp\sharp$):
 
 \begin{verbatim}
        a##0 a##1 a##2 a##3 a##4 a##5 a##6 a##7 a##8 a##9
@@ -110,29 +110,34 @@ the 70 accidented \textit{double sharp notes} ($\sharp\sharp$):
        g##0 g##1 g##2 g##3 g##4 g##5 g##6 g##7 g##8 g##9
 \end{verbatim}
 
-\subsubsection{Identifier}
+\subsubsection{Literals}
 
 
-\subsubsection{Intrinsic functions}
+\subsubsection{Intrinsic objects}
+
+\np Intrinsic objects: theses objects are use access different synths, filters and
+arpeggiators. They are \textgray{synth}, \textgray{filter} and \textgray{arp}
+
+\begin{verbatim}
+       synth          filter         arp
+\end{verbatim}
 
 \subsubsection{Note}
 
 \np \textbf{Syntax}
 
 \begin{verbatim}
-<note> : [a-g](#|b)?[0-9] <symbols>
-       | <note> "," <note>
-<symbols> : <staccatto>
-          | <staccatissmo>
-          |
-          ;
-<staccatto> : "."
-            ;
-<staccatissimo> : "_"
-                ;
-\end{verbatim}
+    <note> :              [a-g](#|b)?[0-9] <symbols>
+                          <note> "," <note>
+    
+    <symbols> :           <staccatto>
+                          <staccatissmo>
+    
+    <staccatto> :         "."
+    
+    <staccatissimo> :     "_"
 
-\subsubsection{Length}
+\end{verbatim}
 
 \subsubsection{Comments}
 \np Just like in the C programming language, you can use a double slash (solidus if you like), \verb+//+.
@@ -143,25 +148,23 @@ It eats the letters/words in its front until it reaches a newline.
       }
 \end{Verbatim}
 
-\subsection{Declarations}
-
-\subsection{\texttt{staff}}
+\subsection{\textgray{staff}}
 \np The \textgray{staff} keyword signifies the beginning of a staff. It is then followed by an identifier and \verb+{+. A staff consist of
 musical notes and musical rests which is declared by using \verb+n+, or \verb+r+, inside the \textit{staff block}.
 The staff, is terminated by \verb+}+. The, \verb+n+, or, \verb+r+, which is declared inside the \textit{staff block} both takes an argument.
 
-\subsubsection{\texttt{n}}
+\subsubsection{\textgray{n}}
 
 \np The \verb+n+ keyword signifies the beginning of a musical note. It must be declared
 inside the staff block.
-It takes 2 parameters; the \textgray{<length>} and the \textgray{<note>} of the
+It takes 2 parameters; the \texttb{<length>} and the \texttb{<note>} of the
 musical note, each separated by a comma. It must end with a semicolon: 
 
 \begin{Verbatim}[frame=single]
       n <length>, <note>;
 \end{Verbatim}
 
-\paragraph{\texttt{<note>}} The parameter \textgray{<note>} consist of a \verb+key+ and an \verb+octave+. It shall be in the form of \verb+[a-g](#|b)?[0-9]+:
+\paragraph{\texttb{<note>}} The parameter \texttb{<note>} consist of a \verb+key+ and an \verb+octave+. It shall be in the form of \verb+[a-g](#|b)?[0-9]+:
 
 \begin{Verbatim}[frame=single]
   c4 // [abcdefg](b|#)?[0-9]
@@ -210,7 +213,7 @@ and a quarter of a note ringing at e4:
 \verb+1/1 1/2 1/4+
 
 \subparagraph{dyad}
-The parameter \textgray{<note>} may be entered for a number of times:
+The parameter \texttb{<note>} may be entered for a number of times:
 
 \begin{Verbatim}[frame=single]
       staff foo {
@@ -257,19 +260,19 @@ note a semitone, append \verb+b+ to the first letter of the note:
 \includegraphics{notes/csdf}
 \end{center}
 
-\np Unlike the parameter \textgray{length>}, arithmetic operation is illegal
-to perform on a \textgray{<note>}. so \textgray{<note>+<note>} is prohibited.
+\np Unlike the parameter \texttb{<length>}, arithmetic operation is illegal
+to perform on a \texttb{<note>}. so \texttb{<note>+<note>} is prohibited.
 
-\np To play a chord or a dyad, like \textgray{c4 e4 g4}, one just needs to write as it is:
+\np To play a chord or a dyad, like \texttb{c4 e4 g4}, one just needs to write as it is:
 
 \begin{Verbatim}[frame=single]
       n 4, c4 e4 g4;
 \end{Verbatim}
 
 \textbf{NOTE} If all these notes is played as staccato, append,
-\textgray{.}, to them, so, it becomes, \textgray{c4. e4. g4.}
+\texttb{.}, to them, so, it becomes, \texttb{c4. e4. g4.}
 
-\paragraph{\texttt{<length>}} For argument, \textgray{<length>}, it may be in the form of integer or floating point number:
+\paragraph{\texttb{<length>}} For argument, \texttb{<length>}, it may be in the form of integer or floating point number:
 \label{nlength}
 
 \begin{Verbatim}[frame=single]
@@ -284,7 +287,7 @@ to perform on a \textgray{<note>}. so \textgray{<note>+<note>} is prohibited.
       n 2, 440; 
 \end{Verbatim}
 
-\np How the former is equivalent to \textgray{n 2, 440;} might
+\np How the former is equivalent to \texttb{n 2, 440;} might
 not make sense as, $4+4$ is mathematically equal to 8. Instead
 of treating this as an addition operation which sums up two
 operands (which is confusing), consider to pronouce it as
@@ -322,7 +325,7 @@ This process can be repeates for 1/8 note quadruplet, but instead of dividing
 with 3 in step (2), it's divided with 4 (4 for quadruplet) and so on.
 
 
-\subsubsection{\texttt{r}}
+\subsubsection{\textgray{r}}
 
 \np The \verb+r+ keyword signifies the beginning of a musical rest. It must be
 declared inside the \textit{staff block}. It takes one parameter; the
@@ -332,12 +335,12 @@ length of the rest:
       r <length>;
 \end{Verbatim}
 
-\np The syntax of \textgray{<length>} is similar to the definition in 
+\np The syntax of \texttb{<length>} is similar to the definition in 
 \autoref{nlength}.
 
 \subsubsection{Extensions}
 
-\subsection{\texttt{track}}
+\subsection{\textgray{track}}
 \np A declaration of variable of type,
 \verb+track+, must be immdediately followed by its identifier, followed by
 an assignment to one of synthesizers taking a type, \verb+staff+. 
@@ -382,4 +385,5 @@ beginning measure, regardless of the time signature. Below is a 4/4 time signatu
         n 2, b4;
       }
 \end{Verbatim}
+
 

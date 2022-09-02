@@ -1,7 +1,31 @@
 \section{Main block}
 \paragraph{Syntax}
 
+\begin{verbatim}
+       <main_blk> :          "main" "{" <main_blk_stmts> "}"
+\end{verbatim}
 
 \paragraph{Semantics}
 \paragraph{Constraints}
+
+\subsection{Statements \texttb{<main\_blk\_stmts>}}
+\begin{verbatim}
+       <main_blk_stmts> :    <track_stmt>
+                             <read_stmt> 
+                             <write_stmt> 
+\end{verbatim}
+\subsubsection{\textgray{track} \texttb{<track\_stmt>}}
+\paragraph{Syntax}
+\begin{verbatim}
+       <track_stmt> :           <track_type_specifier> "track" <id> "=" <track_rv> ;"
+       <track_type_specifier> : "mono"
+                                "stereo"
+       <track_rv> :             <id>
+                                <synth>
+\end{verbatim}
+\paragraph{Semantics}
+\paragraph{Constraints}
+\subsubsection{\textgray{read} \texttb{<read\_stmt>}}
+\subsubsection{\textgray{write} \texttb{<write\_stmt>}}
+
 

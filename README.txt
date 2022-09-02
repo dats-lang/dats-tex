@@ -6,5 +6,5 @@ the semantics and syntax, and describes the workings of the Dats language.
 
 To obtain a copy of the PDF, go to:
 ```
-https://texlive2020.latexonline.cc/compile?git=https://github.com/dats-lang/dats-tex.git&target=dats-2.tex&command=pdflatex&force=true&download=datsv2.pdf
+https://texlive2020.latexonline.cc/compile?git=https://github.com/dats-lang/dats-tex.git&target=dats-2.tex&command=pdflatex&force=true&download=dats-2.pdf
 ``

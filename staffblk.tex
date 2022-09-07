@@ -1,21 +1,55 @@
 \section{Staff block}
 \paragraph{Syntax}
-
+\begin{verbatim}
+       <staff_blk> :         "staff" "{" <staff_blk_stmts> "}"
+\end{verbatim}
 \paragraph{Semantics}
 
-\subparagraph{Pre-defined staff block variables}
+\subparagraph{Pre-defined staff block variables \texttb{<staff\_blk\_var>}}
+\begin{verbatim}
+       <staff_blk_var> :     "octave"
+                             "semitone"
+                             "bpm"
+\end{verbatim}
 
 \paragraph{Constraints}
 
 \subsection{Statements \texttb{<staff\_blk\_stmts>}}
+\paragraph{Syntax}
+\begin{verbatim}
+       <staff_blk_stmts> :   <n_stmt> ";"
+                             <r_stmt> ";
+\end{verbatim}
+
 \subsubsection{\textgray{n} \texttb{<n\_stmt>}}
 \paragraph{Syntax}
+\begin{verbatim}
+       <n_stmt> :            <explicit_n>
+                             <implicit_n>
+ 
+       <explicit_n> :        "n" <length> "," <note>
 
+       <implicit_n> :        <note> <length>
+
+       <length> :            <numeric> [\.]*
+                             <length> "+" <length>
+\end{verbatim}
 
 \paragraph{Semantics}
 \paragraph{Constraints}
 
 \subsubsection{\textgray{r} \texttb{<r\_stmt>}}
+\begin{verbatim}
+       <r_stmt> :            <explicit_r>
+                             <implicit_r>
+
+       <explicit_r> :        "r" <length>
+
+       <implicit_r> :        <length>
+
+       <length> :            <numeric> [\.]*
+                             <length> "+" <length>
+\end{verbatim}
 
 \subsubsection{Assignment}
 
